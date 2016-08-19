@@ -3,8 +3,8 @@ This module allows [Pext](https://github.com/Pext/Pext) to quickly open a
 terminal with SSH connecting to your favourite server of choice. The server
 list is parsed from ~/.ssh/config.
 
-Currently, the terminal opened is always xterm. In the future, this will likely
-become a setting.
+# Supported flags
+- terminal: Use a custom terminal. Must support the -e flag to start with a specific command (default: "xterm")
 
 # Dependencies
 ## Debian

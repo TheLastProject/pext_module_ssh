@@ -21,7 +21,9 @@ from pext_helpers import Action
 
 
 class Module(ModuleBase):
-    def init(self, binary, q):
+    def init(self, settings, q):
+        self.terminal = 'xterm' if ('terminal' not in settings) else settings['terminal']
+
         self.q = q
 
         self.getEntries()
@@ -36,7 +38,7 @@ class Module(ModuleBase):
                     self.q.put([Action.addEntry, line[5:].strip()])
 
     def selectionMade(self, entry):
-        Popen(["xterm", "-e", "ssh", entry[0]])
+        Popen([self.terminal, "-e", "ssh", entry[0]])
         self.q.put([Action.close])
 
     def runCommand(self, command, printOnSuccess=False, hideErrors=False):
