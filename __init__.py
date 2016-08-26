@@ -26,16 +26,16 @@ class Module(ModuleBase):
 
         self.q = q
 
-        self.getEntries()
+        self._getEntries()
 
-    def stop(self):
-        pass
-
-    def getEntries(self):
+    def _getEntries(self):
         with open(expanduser('~') + '/.ssh/config', 'r') as f:
             for line in f:
                 if line.startswith("host "):
                     self.q.put([Action.addEntry, line[5:].strip()])
+
+    def stop(self):
+        pass
 
     def selectionMade(self, entry):
         Popen([self.terminal, "-e", "ssh", entry[0]])
