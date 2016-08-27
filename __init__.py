@@ -37,12 +37,10 @@ class Module(ModuleBase):
     def stop(self):
         pass
 
-    def selectionMade(self, entry):
-        Popen([self.terminal, "-e", "ssh", entry[0]])
-        self.q.put([Action.close])
-
-    def runCommand(self, command, printOnSuccess=False, hideErrors=False):
-        pass
+    def selectionMade(self, selection):
+        if len(selection) == 1:
+            Popen([self.terminal, "-e", "ssh", selection[0]["value"]])
+            self.q.put([Action.close])
 
     def processResponse(self, response):
         pass
