@@ -4,7 +4,7 @@
   "description": "Allows Pext to quickly open a terminal with a SSH connection to a server in ~/.ssh/config",
   "homepage": "https://pext.hackerchick.me/",
   "license": "GPL-3.0+",
-  "urls": [
+  "git_urls": [
     "https://github.com/Pext/pext_module_ssh",
     "https://notabug.org/Pext/pext_module_ssh"
   ]
