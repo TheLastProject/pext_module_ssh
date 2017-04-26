@@ -7,5 +7,10 @@
   "git_urls": [
     "https://github.com/Pext/pext_module_ssh",
     "https://notabug.org/Pext/pext_module_ssh"
-  ]
+  ],
+  "settings": [{
+    "name": "terminal",
+    "description": "The terminal to use (must support xterm style -e)",
+    "default": "xterm"
+  }]
 }
