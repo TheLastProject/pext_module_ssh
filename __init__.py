@@ -26,6 +26,7 @@ class Module(ModuleBase):
 
         self.q = q
 
+        self.entries = []
         self._get_entries()
 
     def _get_entries(self):
@@ -34,13 +35,20 @@ class Module(ModuleBase):
                 if line.lower().startswith("host "):
                     hostname = line[5:].strip()
                     if hostname != "*":
-                        self.q.put([Action.add_entry, hostname])
+                        self.entries.append(hostname)
+
+        self._set_entries()
+
+    def _set_entries(self):
+        self.q.put([Action.replace_entry_list, self.entries])
 
     def stop(self):
         pass
 
     def selection_made(self, selection):
-        if len(selection) == 1:
+        if len(selection) == 0:
+            self._set_entries()
+        elif len(selection) == 1:
             try:
                 Popen([self.terminal, "-e", "ssh", selection[0]["value"]])
             except FileNotFoundError:
