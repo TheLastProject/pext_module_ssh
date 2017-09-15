@@ -39,7 +39,12 @@ class Module(ModuleBase):
 
     def selection_made(self, selection):
         if len(selection) == 1:
-            Popen([self.terminal, "-e", "ssh", selection[0]["value"]])
+            try:
+                Popen([self.terminal, "-e", "ssh", selection[0]["value"]])
+            except FileNotFoundError:
+                self.q.put([Action.critical_error, "Could not open {}".format(self.terminal)])
+                return
+
             self.q.put([Action.close])
 
     def process_response(self, response):
