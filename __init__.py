@@ -31,7 +31,7 @@ class Module(ModuleBase):
     def _get_entries(self):
         with open(expanduser('~') + '/.ssh/config', 'r') as f:
             for line in f:
-                if line.startswith("host "):
+                if line.lower().startswith("host "):
                     self.q.put([Action.add_entry, line[5:].strip()])
 
     def stop(self):
