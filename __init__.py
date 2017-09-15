@@ -32,7 +32,9 @@ class Module(ModuleBase):
         with open(expanduser('~') + '/.ssh/config', 'r') as f:
             for line in f:
                 if line.lower().startswith("host "):
-                    self.q.put([Action.add_entry, line[5:].strip()])
+                    hostname = line[5:].strip()
+                    if hostname != "*":
+                        self.q.put([Action.add_entry, hostname])
 
     def stop(self):
         pass
