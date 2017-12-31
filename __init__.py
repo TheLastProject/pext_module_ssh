@@ -30,7 +30,7 @@ class Module(ModuleBase):
         self._get_entries()
 
     def _get_entries(self):
-        with open(expanduser('~') + '/.ssh/config', 'r') as f:
+        with open(expanduser('~') + '/.ssh/config', 'r', encoding='utf-8') as f:
             for line in f:
                 if line.lower().startswith("host "):
                     hostname = line[5:].strip()
