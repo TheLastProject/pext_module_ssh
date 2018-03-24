@@ -1,3 +1,5 @@
+*This module has been demoted from the official module list due to its low quality. Please help improve it.*
+
 # Quick SSH connector module for Pext
 This module allows [Pext](https://github.com/Pext/Pext) to quickly open a
 terminal with SSH connecting to your favourite server of choice. The server
